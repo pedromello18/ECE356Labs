@@ -115,9 +115,8 @@ int server(uint16_t port){
 		}
 		while(len = recv(new_s, buf, sizeof(buf), 0)){
 			// fputs(buf, stdout);
-			if (send(s, buf, strnlen(buf, MAX_MSG_LENGTH), 0) < 0) {
-				perror("Send error:");
-			}
+			buf[len] = '\0';
+			send(s, buf, len, 0);
 		}
 		close(new_s);
 	}
