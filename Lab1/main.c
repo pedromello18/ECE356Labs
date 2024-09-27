@@ -115,7 +115,7 @@ int server(uint16_t port){
 			exit(1);
 		}
 		printf("Client Connected...\n");
-		while(len = recv(new_s, buf, buf, 0)){
+		while(len = recv(new_s, buf, sizeof(buf), 0)){
 			fputs(buf, stdout);
 			buf[len] = '\0';
 			send(new_s, buf, len, 0);
