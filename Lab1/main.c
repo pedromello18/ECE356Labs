@@ -113,8 +113,8 @@ int server(uint16_t port){
 			perror("simplex-talk: accept");
 			exit(1);
 		}
-		while(len = recv(new_s, buf, sizeof(buf), 0)){
-			// fputs(buf, stdout);
+		while(len = recv(new_s, buf, sizeof(buf) - 1, 0)){
+			fputs(buf, stdout);
 			buf[len] = '\0';
 			send(s, buf, len, 0);
 		}
