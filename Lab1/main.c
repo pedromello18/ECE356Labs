@@ -107,12 +107,14 @@ int server(uint16_t port){
 		exit(1);
 	}
 	listen(s, MAX_BACK_LOG);
+	printf("Server Listening...\n");
 
 	while(1){
 		if((new_s = accept(s, (struct sockaddr *)&sin, &len)) < 0){
 			perror("simplex-talk: accept");
 			exit(1);
 		}
+		printf("Client Connected...\n");
 		while(len = recv(new_s, buf, sizeof(buf) - 1, 0)){
 			fputs(buf, stdout);
 			buf[len] = '\0';
